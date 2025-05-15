@@ -11,14 +11,18 @@ class Company extends Model
 
     protected $fillable = [
         'name',
+        'industry',
+        'status',
         'address',
+        'city',
+        'postal_code',
+        'country',
         'phone',
-        'pic',
         'email',
         'website',
-        'tax_id',
-        'logo',
-        'status'
+        'founded_date',
+        'description',
+        'logo'
     ];
 
     // Relasi ke Department

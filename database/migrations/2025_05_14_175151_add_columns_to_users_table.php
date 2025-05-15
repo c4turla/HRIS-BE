@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
             $table->foreignId('company_id')->nullable()->constrained('companies')->onDelete('set null');
             $table->foreignId('department_id')->nullable()->constrained('departments')->onDelete('set null');
-            $table->foreignId('position_id')->nullable()->constrained('positions')->onDelete('set null');
+            $table->foreignId('company_location_id')->nullable()->constrained('company_locations')->onDelete('set null');
         });
     }
 
@@ -34,8 +34,8 @@ return new class extends Migration
             $table->dropForeign(['department_id']);
             $table->dropColumn('department_id');
 
-            $table->dropForeign(['position_id']);
-            $table->dropColumn('position_id');
+            $table->dropForeign(['company_location_id']);
+            $table->dropColumn('company_location_id');
         });
     }
 };

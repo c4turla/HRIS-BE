@@ -16,18 +16,19 @@ class CompanyResource extends JsonResource
     {
         return parent::toArray($request);
         return [
-            'id' => $this->id,
             'name' => $this->name,
+            'industry' => $this->industry,
+            'status' => $this->status,
             'address' => $this->address,
+            'city' => $this->city,
+            'postal_code' => $this->postal_code,
+            'country' => $this->country,
             'phone' => $this->phone,
-            'pic' => $this->pic,
             'email' => $this->email,
             'website' => $this->website,
-            'tax_id' => $this->tax_id,
-            'logo' => $this->logo ? asset('storage/' . $this->logo) : null,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'founded_date' => $this->founded_date,
+            'description' => $this->description,
+            'logo' => $this->logo_path ? asset('storage/' . $this->logo_path) : null,
         ];
     }
 }

@@ -14,7 +14,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::paginate(); // Atau ->get() jika tidak pakai pagination
+        $companies = Company::paginate();
         return CompanyResource::collection($companies);
     }
 
@@ -25,14 +25,18 @@ class CompanyController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'industry' => 'nullable|string|max:255',
+            'status' => 'required|in:active,inactive,pending',
             'address' => 'nullable|string',
+            'city' => 'nullable|string|max:100',
+            'postal_code' => 'nullable|string|max:20',
+            'country' => 'nullable|string|max:100',
             'phone' => 'nullable|string|max:30',
-            'pic' => 'nullable|string|max:50',
-            'email' => 'nullable|email',
-            'website' => 'nullable|url',
-            'tax_id' => 'nullable|string|max:50',
-            'logo' => 'nullable|string',
-            'status' => 'required|in:active,inactive,suspended',
+            'email' => 'nullable|email|max:255',
+            'website' => 'nullable|url|max:255',
+            'founded_date' => 'nullable|date',
+            'description' => 'nullable|string',
+            'logo' => 'nullable|string|max:255',
         ]);
 
         $company = Company::create($validated);
@@ -55,14 +59,18 @@ class CompanyController extends Controller
     {
         $validated = $request->validate([
             'name' => 'sometimes|required|string|max:255',
+            'industry' => 'nullable|string|max:255',
+            'status' => 'sometimes|required|in:active,inactive,pending',
             'address' => 'nullable|string',
+            'city' => 'nullable|string|max:100',
+            'postal_code' => 'nullable|string|max:20',
+            'country' => 'nullable|string|max:100',
             'phone' => 'nullable|string|max:30',
-            'pic' => 'nullable|string|max:50',
-            'email' => 'nullable|email',
-            'website' => 'nullable|url',
-            'tax_id' => 'nullable|string|max:50',
-            'logo' => 'nullable|string',
-            'status' => 'sometimes|required|in:active,inactive,suspended',
+            'email' => 'nullable|email|max:255',
+            'website' => 'nullable|url|max:255',
+            'founded_date' => 'nullable|date',
+            'description' => 'nullable|string',
+            'logo' => 'nullable|string|max:255',
         ]);
 
         $company->update($validated);

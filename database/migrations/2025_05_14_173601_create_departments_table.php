@@ -12,17 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('departments', function (Blueprint $table) {
-            $table->id(); // BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
-            $table->unsignedBigInteger('company_id'); // Foreign Key to companies.id
-            $table->string('name', 100); // VARCHAR(100) NOT NULL
-            $table->text('description')->nullable(); // TEXT
-            $table->timestamps(); // created_at & updated_at
+            $table->id();
+            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
+            $table->string('name', 100);
+            $table->string('head', 100)->nullable();
+            $table->enum('status', ['Aktif', 'Tidak Aktif', 'Pending'])->default('Aktif');
+            $table->date('created');
+            $table->timestamps();
 
-            // Foreign Key Constraint
-            $table->foreign('company_id')
-                  ->references('id')
-                  ->on('companies')
-                  ->onDelete('cascade');
+            // Foreign Key Constraint handled by foreignId()->constrained()
         });
     }
 

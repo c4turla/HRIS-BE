@@ -12,7 +12,9 @@ class Department extends Model
     protected $fillable = [
         'company_id',
         'name',
-        'description'
+        'head',
+        'status',
+        'created'
     ];
 
     // Relasi ke Company

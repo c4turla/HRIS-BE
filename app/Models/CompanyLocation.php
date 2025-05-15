@@ -5,14 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Position extends Model
+class CompanyLocation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'department_id',
+        'company_id',
         'name',
-        'description'
+        'type',
+        'address',
+        'city',
+        'postal_code',
+        'country',
+        'phone',
+        'is_headquarters'
     ];
 
     // Relasi ke Department

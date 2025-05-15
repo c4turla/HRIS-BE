@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('positions', function (Blueprint $table) {
-            $table->id(); // BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
-            $table->unsignedBigInteger('department_id'); // Foreign Key to departments.id
-            $table->string('name', 100); // VARCHAR(100) NOT NULL
-            $table->text('description')->nullable(); // TEXT
-            $table->timestamps(); // created_at & updated_at
+        Schema::create('company_locations', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
+            $table->string('name', 100);
+            $table->string('type', 50);
+            $table->string('address');
+            $table->string('city', 100);
+            $table->string('postal_code', 20)->nullable();
+            $table->string('country', 100)->default('Indonesia');
+            $table->string('phone', 20)->nullable();
+            $table->boolean('is_headquarters')->default(false);
+            $table->timestamps();
 
             // Foreign Key Constraint
-            $table->foreign('department_id')
-                  ->references('id')
-                  ->on('departments')
-                  ->onDelete('cascade');
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('positions');
+        Schema::dropIfExists('company_locations');
     }
 };

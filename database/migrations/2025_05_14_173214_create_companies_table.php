@@ -12,17 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->id(); // BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
-            $table->string('name', 255); // VARCHAR(255) NOT NULL
-            $table->text('address')->nullable(); // TEXT
-            $table->string('phone', 30)->nullable(); // VARCHAR(30)
-            $table->string('pic', 50)->nullable(); // VARCHAR(50)
-            $table->string('email', 100)->nullable(); // VARCHAR(100)
-            $table->string('website', 255)->nullable(); // VARCHAR(255)
-            $table->string('tax_id', 50)->nullable(); // VARCHAR(50)
-            $table->string('logo', 255)->nullable(); // VARCHAR(255)
-            $table->enum('status', ['active', 'inactive', 'suspended'])->default('active'); // ENUM
-            $table->timestamps(); // created_at & updated_at
+            $table->id();
+            $table->string('name');
+            $table->string('industry', 100);
+            $table->enum('status', ['Aktif', 'Tidak Aktif', 'Pending'])->default('Aktif');
+            $table->date('joined');
+            $table->string('address')->nullable();
+            $table->string('city', 100)->nullable();
+            $table->string('postal_code', 20)->nullable();
+            $table->string('country', 100)->default('Indonesia');
+            $table->string('phone', 20)->nullable();
+            $table->string('email', 100)->nullable();
+            $table->string('website', 255)->nullable();
+            $table->date('founded_date')->nullable();
+            $table->text('description')->nullable();
+            $table->string('logo_path')->nullable();
+            $table->timestamps();
         });
     }
 
