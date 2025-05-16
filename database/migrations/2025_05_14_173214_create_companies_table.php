@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('industry', 100);
             $table->enum('status', ['Aktif', 'Tidak Aktif', 'Pending'])->default('Aktif');
-            $table->date('joined');
             $table->string('address')->nullable();
             $table->string('city', 100)->nullable();
             $table->string('postal_code', 20)->nullable();
@@ -26,7 +25,7 @@ return new class extends Migration
             $table->string('website', 255)->nullable();
             $table->date('founded_date')->nullable();
             $table->text('description')->nullable();
-            $table->string('logo_path')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

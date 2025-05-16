@@ -26,7 +26,7 @@ class CompanyController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'industry' => 'nullable|string|max:255',
-            'status' => 'required|in:active,inactive,pending',
+            'status' => 'required',
             'address' => 'nullable|string',
             'city' => 'nullable|string|max:100',
             'postal_code' => 'nullable|string|max:20',
@@ -60,7 +60,7 @@ class CompanyController extends Controller
         $validated = $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'industry' => 'nullable|string|max:255',
-            'status' => 'sometimes|required|in:active,inactive,pending',
+            'status' => 'sometimes',
             'address' => 'nullable|string',
             'city' => 'nullable|string|max:100',
             'postal_code' => 'nullable|string|max:20',
