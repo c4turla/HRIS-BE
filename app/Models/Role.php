@@ -4,20 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Traits\HasPermissions;
 
 class Role extends Model
 {
-    use HasFactory, HasPermissions;
+    use HasFactory;
 
     protected $fillable = [
         'name',
         'slug'
-    ];
-
-    // Jika kamu ingin akses permission via resource
-    protected $casts = [
-        'permissions' => 'array'
     ];
 
     // Relasi ke User
